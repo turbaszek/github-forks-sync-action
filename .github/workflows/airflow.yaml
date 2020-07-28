@@ -2,15 +2,20 @@
 name: Airflow sync
 on:
   schedule:
-    - cron: '16 * * * *'
+    - cron: '0 1 * * *'
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
 
 jobs:
   sync:
+    name: apache/airflow
     runs-on: ubuntu-latest
     steps:
       - uses: TobKed/github-forks-sync-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.SYNC_KEY }}
           upstream_repository: apache/airflow
           target_repository: turbaszek/airflow
           upstream_branch: master
