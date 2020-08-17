@@ -1,5 +1,5 @@
 ---
-name: Airflow sync
+name: KEDA sync
 on:
   schedule:
     - cron: '0 1 * * *'
@@ -16,8 +16,8 @@ jobs:
       - uses: TobKed/github-forks-sync-action@master
         with:
           github_token: ${{ secrets.SYNC_KEY }}
-          upstream_repository: apache/airflow
-          target_repository: turbaszek/airflow
+          upstream_repository: kedacore/keda
+          target_repository: turbaszek/keda
           upstream_branch: master
           target_branch: master
           force: true
